@@ -1,0 +1,40 @@
+{
+  "name": "triplenerdscore/bridger-insight",
+  "description": "PHP client for LexisNexis Bridger Insight XG (SOAP/REST adapter-ready) with WS-Security, generator scripts, Laravel provider, and orchestration for full security checks.",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^8.1",
+    "ext-soap": "*",
+    "psr/log": "^3.0",
+    "psr/http-client": "^1.0",
+    "psr/http-message": "^1.0",
+    "phpro/soap-client": "^1.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tns\\\\BridgerInsight\\\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tns\\\\BridgerInsight\\\\Tests\\\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0"
+  },
+  "bin": [
+    "bin/bridger-generate"
+  ],
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Tns\\\\BridgerInsight\\\\Laravel\\\\BridgerInsightServiceProvider"
+      ],
+      "aliases": {
+        "BridgerInsight": "Tns\\\\BridgerInsight\\\\Laravel\\\\BridgerInsightFacade"
+      }
+    }
+  }
+}

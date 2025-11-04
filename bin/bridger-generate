@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+// Simple wrapper around phpro/soap-client code generator.
+//
+// Usage:
+//   BRIDGER_WSDL="https://tenant/XGServices.svc?singleWsdl" bin/bridger-generate
+// or:
+//   bin/bridger-generate https://tenant/XGServices.svc?singleWsdl
+//
+$wsdl = getenv('BRIDGER_WSDL') ?: ($argv[1] ?? null);
+if (!$wsdl) {
+    fwrite(STDERR, "ERROR: Provide WSDL via BRIDGER_WSDL env or as the first argument.\n");
+    exit(1);
+}
+
+$config = <<<YML
+wsdl: "{$wsdl}"
+destinations:
+  client: "src/Soap/Generated"
+  types: "src/Soap/Generated/Types"
+client:
+  name: "XgServicesClient"
+  namespaces:
+    client: "Tns\\BridgerInsight\\Soap\\Generated"
+    types: "Tns\\BridgerInsight\\Soap\\Generated\\Types"
+YML;
+
+$tmp = sys_get_temp_dir() . '/soap-config-' . uniqid() . '.yml';
+file_put_contents($tmp, $config);
+
+$cmd = escapeshellcmd('vendor/bin/soap-client') . ' generate:all ' . escapeshellarg($tmp);
+passthru($cmd, $exit);
+exit($exit);
