@@ -13,12 +13,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Tns\\\\BridgerInsight\\\\": "src/"
+      "Tns\\BridgerInsight\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tns\\\\BridgerInsight\\\\Tests\\\\": "tests/"
+      "Tns\\BridgerInsight\\Tests\\": "tests/"
     }
   },
   "require-dev": {
@@ -30,10 +30,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Tns\\\\BridgerInsight\\\\Laravel\\\\BridgerInsightServiceProvider"
+        "Tns\\BridgerInsight\\Laravel\\BridgerInsightServiceProvider"
       ],
       "aliases": {
-        "BridgerInsight": "Tns\\\\BridgerInsight\\\\Laravel\\\\BridgerInsightFacade"
+        "BridgerInsight": "Tns\\BridgerInsight\\Laravel\\BridgerInsightFacade"
       }
     }
   }
